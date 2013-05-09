@@ -8,26 +8,5 @@
     height: 10, # Tiles
 
     backup_frequency: 60, # Dump the state of the world every x seconds
-  },
-}
-
-@@data = {
-  terrain: {
-    dirt: {
-      symbol: 'd'
-    },
-    grass: {
-      symbol: 'g'
-    },
-    mud: {
-      symbol: 'm'
-    },
-    water: {
-      symbol: 'w'
-    }
-  },
-
-  entities: {
-
   }
 }
