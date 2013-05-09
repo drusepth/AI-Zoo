@@ -1,6 +1,6 @@
 @@config = {
-  bots: {
-    directory: 'bots'
+  creatures: {
+    directory: 'creatures'
   },
 
   world: {
@@ -9,7 +9,9 @@
 
     backup_frequency: 60, # Dump the state of the world every x seconds
   },
+}
 
+@@data = {
   terrain: {
     dirt: {
       symbol: 'd'

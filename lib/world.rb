@@ -6,7 +6,7 @@ class World
     @height = @@config[:world][:height] # Height in tiles of world
 
     # A map of the world's terrain
-    @terrain_map = Array.new(@width) { Array.new(@height) { @@config[:terrain][:nothing] }}
+    @terrain_map = Array.new(@width) { Array.new(@height) { @@data[:terrain][:nothing] }}
 
     @day = 0  # Number of update_loops successfully completed for this world
 
@@ -32,7 +32,7 @@ class World
 
   # Fill the world with random terrain
   def randomize_terrain
-    valid_terrains = @@config[:terrain].values.map { |i| i[:symbol] }
+    valid_terrains = @@data[:terrain].values.map { |i| i[:symbol] }
 
     (0...@width).each do |x|
       (0...@height).each do |y|
