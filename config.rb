@@ -1,12 +1,20 @@
 @@config = {
-  :bots => {
-    :directory => 'bots'
+  bots: {
+    directory: 'bots'
   },
 
-  :world => {
-    :width  => 10, # Tiles
-    :height => 10, # Tiles
+  world: {
+    width:  30, # Tiles
+    height: 10, # Tiles
 
-    :backup_frequency => 60, # Dump the state of the world every x seconds
+    backup_frequency: 60, # Dump the state of the world every x seconds
+  },
+
+  symbols: {
+    terrain: {
+      dirt:    'd',
+      grass:   'g',
+      water:   'w'
+    }
   }
 }
