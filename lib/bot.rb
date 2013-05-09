@@ -1,5 +1,3 @@
-require_relative '../config'
-
 class Bot
   @owner_name = nil # Username of authenticated user
   @bot_name   = nil # Name of submitted bot (randomize?)
@@ -14,7 +12,7 @@ class Bot
   # Returns the full path to the source code for this bot
   def source_filename
     sanitized_filename = @owner_name.gsub('.', '-') + '.rb'
-    full_path = @config[:bots_directory] + '/' + sanitized_filename
+    full_path = @@config[:bots][:directory] + '/' + sanitized_filename
   end
 
   # Returns the actual source code of this bot instance
