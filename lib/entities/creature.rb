@@ -1,6 +1,9 @@
-class Creature
-  @creator_name  = nil # Username of authenticated user
-  @creature_name = nil # Name of submitted creature (randomize?)
+class Creature < Entity
+
+  def initialize
+    @creator_name  = nil # Username of authenticated user
+    @creature_name = nil # Name of submitted creature (randomize?)
+  end
 
   # Create an empty source code file for this creature
   def create_source_file
@@ -19,4 +22,5 @@ class Creature
   def source_code
     source = File.read(source_filename)
   end
+
 end
