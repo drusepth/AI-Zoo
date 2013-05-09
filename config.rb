@@ -10,11 +10,22 @@
     backup_frequency: 60, # Dump the state of the world every x seconds
   },
 
-  symbols: {
-    terrain: {
-      dirt:    'd',
-      grass:   'g',
-      water:   'w'
+  terrain: {
+    dirt: {
+      symbol: 'd'
+    },
+    grass: {
+      symbol: 'g'
+    },
+    mud: {
+      symbol: 'm'
+    },
+    water: {
+      symbol: 'w'
     }
+  },
+
+  entities: {
+
   }
 }
