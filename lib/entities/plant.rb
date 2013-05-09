@@ -1,3 +1,3 @@
-class Plant < Entity
-
+module Plant
+  include Entity
 end

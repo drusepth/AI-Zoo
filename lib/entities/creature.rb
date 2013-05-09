@@ -1,4 +1,10 @@
-class Creature < Entity
+class Creature
+  include Entity
+
+  @@data[:entities][:types] << Creature
+
+  def self.random_spawn_chance; 0; end
+  def symbol; 'c'; end
 
   def initialize
     @creator_name  = nil # Username of authenticated user

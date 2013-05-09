@@ -15,6 +15,8 @@
   },
 
   entities: {
+    nothing: ' ', # Symbol to print when there is no entity at a location
 
+    types: [], # List of valid entity types, registered as they are included
   }
 }
