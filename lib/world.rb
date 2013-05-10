@@ -9,7 +9,7 @@ class World
     @terrain_map = Array.new(@width) { Array.new(@height) { @@data[:terrain][:nothing] }}
 
     # A map of the world's entities
-    @entity_map = Array.new(@width) { Array.new(@height) { [] }}
+    #@entity_map = Array.new(@width) { Array.new(@height) { [] }}
 
     # A list of the world's living entities
     @living_entities = []
@@ -31,10 +31,20 @@ class World
       @day += 1
 
       puts "Day " + @day.to_s #if @age % 100000 == 0
+
+      # Update all entities
+      @living_entities.each do |entity|
+        entity.update self
+      end
+
+      # Remove all deceased entities from the world
+      check_entity_deaths
+
+      # Print current map states
       print_terrain_map
       print_entity_map
 
-      sleep 1
+      #sleep 1
     end
   end
 
@@ -44,13 +54,12 @@ class World
 
     (0...@width).each do |x|
       (0...@height).each do |y|
-        chosen_terrain = valid_terrains[rand valid_terrains.length]
-        @terrain_map[x][y] = chosen_terrain
+        @terrain_map[x][y] = valid_terrains[rand valid_terrains.length]
       end
     end
   end
 
-  # Fill the world with random entities
+  #Fill the world with random entities
   def randomize_entities
     valid_entities = @@data[:entities][:types].select { |e| e.random_spawn_chance > 0 }
     (0...@width).each do |x|
@@ -68,17 +77,30 @@ class World
 
         # If an entity would be created here, add it to the world
         if chosen_entity
-          entity = chosen_entity.new
-          create_entity(entity, x, y)
+          @living_entities << chosen_entity.new(x, y)
         end
 
       end
     end
   end
 
-  def create_entity(entity, x, y)
-    @entity_map[x][y] << entity
-    @living_entities << entity
+  # Handle entity deaths
+  def check_entity_deaths
+    @living_entities.each do |entity|
+      if not entity.alive?
+        @living_entities.delete(entity)
+      end
+    end
+  end
+
+  # Return all entities at a given (x, y) coordinate
+  def entities_at(x, y)
+    entities = []
+    @living_entities.each do |entity|
+      entities << entity if entity.location and entity.location == [x, y]
+    end
+
+    return entities
   end
 
   # Print a rectangular subset of the terrain map
@@ -96,8 +118,9 @@ class World
   def print_entity_map(ul_x = 0, ul_y = 0, br_x = @width - 1, br_y = @height - 1)
     (ul_y...br_y).each do |y|
       (ul_x...br_x).each do |x|
-        if @entity_map[x][y].first
-          print @entity_map[x][y].first.symbol
+        entities = entities_at x, y
+        if entities and entities.first
+          print entities.first.symbol
         else
           print @@data[:entities][:nothing]
         end
