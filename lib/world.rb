@@ -44,7 +44,7 @@ class World
       print_terrain_map
       print_entity_map
 
-      sleep 1
+      sleep @@config[:world][:time_slowdown]
     end
   end
 
