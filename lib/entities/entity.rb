@@ -3,6 +3,7 @@ module Entity
   # Code to be run when this entity is added to the game world
   def initialize(x, y)
     @age = 0
+    @max_age = 60 + rand(120)
 
     @alive = true
 
@@ -12,10 +13,8 @@ module Entity
   # Pass the entity's visible world state in and let them respond accordingly
   def update(world)
     @age += 1
-    puts "age is now " + @age.to_s
 
-    if @age > 100
-      puts "destruction triggered"
+    if @age > @max_age
       trigger_destruction
     end
 
