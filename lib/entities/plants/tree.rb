@@ -6,10 +6,12 @@ class Tree
   def self.random_spawn_chance; 0.05; end
   def symbol; 'T'; end
 
+  def initialize(x, y)
+    super
+  end
+
   def update(world)
     super
-
-    
   end
 
 end
